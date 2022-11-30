@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../owo.css">
+    <meta property="og:title" content=Tiempissimo>
+    <meta property="og:site_name" content=Tiempissimo>
+    <meta property="og:url" content=https://tiempissimo.tk>
+    <meta property="og:description" content="El tiempo simplificado">
+    <meta property="og:type" content=website>
+    <meta property="og:image" content=https://i.imgur.com/xj3e6tz.jpg>
+    <title>El T I E M P O</title>
+    <script>
+        // local time 24h
+        function startTime() {
+        var today = new Date();
+        var h = today.getHours();
+        var m = today.getMinutes();
+        var s = today.getSeconds();
+        m = checkTime(m);
+        s = checkTime(s);
+        document.getElementById('local').innerHTML = h + ":" + m + ":" + s;
+        var t = setTimeout(startTime, 1000);
+        }
+        function checkTime(i) {
+        if (i < 10) {i = "0" + i};  // add zero in front of numbers < 10
+        return i;
+        }
+        // local time end
+
+        // UTC time 24h with year day
+
+        function startINTtime() {
+        setInterval(function(){
+        
+        const dayOfYear = date =>
+            Math.floor((date - new Date(date.getFullYear(), 0, 0)) / 1000 / 60 / 60 / 24);
+
+        var today = new Date();
+        var h = today.getUTCHours();
+        var m = today.getUTCMinutes();
+        var s = today.getUTCSeconds();
+        var y = dayOfYear(new Date());
+        m = checkTime(m);
+        s = checkTime(s);
+        document.getElementById('UTC').innerHTML = y + 'd ' + h + "h  " + m + "m  " + s + 's  ';
+
+        var t = setTimeout(startTime, 1000);
+        }, 1000)
+        function checkTime(i) {
+        if (i < 10) {i = "0" + i};  // add zero in front of numbers < 10
+        return i;
+        }
+        }
+      
+        // UTC time 24h + day end 
+
+        // end year count down 
+
+        function endyear() {
+        var countDownDate = new Date("Jan 1, 2023 00:00:00").getTime();
+
+        // Update every sexcond 
+        var x = setInterval(function() {
+
+        // N O W
+        var now = new Date().getTime();
+
+        // delta between NOW and THEN
+        var distance = countDownDate - now;
+
+        // year feccionné
+        var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+        // sex resuté in id timer
+        document.getElementById("yearend").innerHTML = days + "d " + hours + "h " + minutes + "m " + seconds + "s ";
+        // when the end is, some shit
+        if (distance < 0) {
+            clearInterval(x);
+        document.getElementById("yearend").innerHTML = "Happy 2023";
+        }}, 1000);}
+    
+        // Year count End
+        
+        // days of funny coviddididididididiiasidasidi                                            h 
+        function PDMCtimeDAYS (){
+
+        var prevTime = new Date("Mar 20, 2020 00:00:00");
+        var thisTime = new Date();
+        var diff = thisTime.getTime() - prevTime.getTime();
+        var pdmcdays = Math.round(diff / (1000*60*60*24));
+
+        //document.getElementById('pdmctime').innerHTML = pdmcdays + ' days '
+        }
+        // days of funny end
+
+    </script>
+</head>
+<body onload="startTime();startINTtime();endyear()">
+    <h1>El <i>T i e m p o</i></h1>
+    <br>
+    <h1>Hora Local</h1>
+    <h2 id="local"></h2>
+    <br>
+    <h1 onclick="alert('Dia del año contando desde 01/01');">Hora y Dia UTC <sup class="awoo">i</sup></h1>
+    <h2 id="UTC"></h2>
+    <br>
+    <h1>Siguiente Año</h1>
+    <h2 id="yearend"></h2>
+    <br>
+    <!--
+    <h1>Days of funny sickness</h1>
+    <h2 id="pdmctime"></h2>
+    -->
+    <footer><sub>Maxi_2601</sub></footer>
+</body>
+</html>
