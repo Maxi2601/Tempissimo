@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en-gb">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UnixTime</title>
+    <style>
+    body {
+        text-align: center;
+        font-family: Helvetica;
+        /*background-color: #000000;
+        color: #ffffff;*/
+    }
+    
+    h1 {
+        font-size: 300%;
+    }
+    h2 {
+        font-size: 200%;
+    }
+    div {
+        margin-top: 20%;
+    }
+    </style>
+    <script>
+        function the(){
+        var today = new Date();
+        var DD = today.getDate();
+        var MM = today.getMonth() + 1;
+        var YYYY = today.getFullYear();
+
+        var h = today.getHours();
+        var m = today.getMinutes();
+        var s = today.getSeconds();
+
+        var u = Math.floor(today.getTime() / 1000);
+
+        m = checkTime(m);
+        s = checkTime(s); 
+        MM = checkTime(MM);
+        DD = checkTime(DD);
+        document.getElementById("date").innerHTML = YYYY + '/' + MM +'/'+ DD+ '&nbsp;&nbsp;  '+ h+ "h "+m+'m '+s+'s ';
+        document.getElementById('timestamp').innerHTML = u;
+        var t = setTimeout(the, 1000);
+        }
+        function checkTime(i) {
+        if (i < 10) {i = "0" + i};  // add zero in front of numbers < 10
+        return i;
+        }
+    </script>
+</head>
+<body onload="the()">
+<div onclick="document.documentElement.requestFullscreen()">
+<h1 id="date">chargeando...</h1>
+<h2 id="timestamp"></h2>
+</div>
+</body>
+</html>
